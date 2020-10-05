@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/LoginPage.dart';
+import 'package:flutter_firebase/Auth.dart';
 import 'dart:async';
 
 import 'package:shimmer/shimmer.dart';
@@ -16,19 +18,26 @@ class _SplashScreenState extends State<SplashScreen> {
     _mockChekForSession().then((status) {
       if (status) {
         _navigateToHome();
-      } else {}
+      } else {
+        _navigateToHome2();
+      }
     });
   }
 
   Future<bool> _mockChekForSession() async {
     await Future.delayed(Duration(milliseconds: 5000), () {});
 
-    return true;
+    return false;
   }
 
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+  }
+
+  void _navigateToHome2() {
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (BuildContext context) => Auth()));
   }
 
   @override
